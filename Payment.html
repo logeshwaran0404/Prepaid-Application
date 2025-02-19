@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Payment</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Use only one Bootstrap CSS file -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <header>
+        <div>
+            <nav class="navbar navbar-light fixed-top w-100">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="Assets/Images/logo.png" alt="logo" width="38" height="34" class="d-inline-block align-text-center">
+                        <h1 class="h1 as h3 d-inline-block align-text-center text-light fw-bold">MOBICOMM</h1>
+                    </a>
+                    <div class="me-3">
+                        <div class="dropdown">
+                            <a class="navbar-brand" href="#" role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="Assets/Images/profile-icon.png" class="float-end me-3" alt="Profile" width="35" height="35">
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                                <li><a class="dropdown-item" href="#">Login</a></li>
+                                <li><a class="dropdown-item" href="#">Help</a></li>
+                            </ul>
+                        </div>
+                    </div>    
+                </div>
+            </nav>
+        </div>
+    </header>
+    <br><br>
+    <div class="main ms-5">
+        <div class="card mt-5 float-start">
+            <div class="card-body">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col">
+                            <div class="payment-summary-card">
+                                <h2>Payment Summary</h2>
+                                <div id="payment-summary">
+                                    <!-- Payment summary details will be inserted here dynamically -->
+                                </div>
+                                <button class="btn btn-pay-now" onclick="alert('Payment Successful!')">Pay Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main ms-5">
+    <div class="card w-50 mt-5 float-end">
+        <h2 class="h2 as h4 p-3">Payment Options</h2>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        <img src="Assets/Images/Upi.webp" alt="UPI" height="35" width="45" class="me-3"/>UPI
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <a role="button" href=""><img src="Assets/Images/gpay.png" alt="gPay" height="35" width="35" class="me-4"/></a>
+                        <a role="button" href=""><img src="Assets/Images/Phone Pay.avif" alt="PhonePay" height="35" width="35" class="me-4"/></a>
+                        <a role="button" href=""><img src="Assets/Images/Paytm.png" alt="Paytm" height="35" width="35" class="me-4"/></a>
+                        <a role="button" href=""><img src="Assets/Images/amazonpay.png" alt="Amazon Pay" height="35" width="35" class="me-4"/></a>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        <img src="Assets/Images/Netbanking.png" alt="Net Banking" height="35" width="35" class="me-4"/>Net Banking
+                    </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <a role="button" href=""><img src="Assets/Images/sbi.png" alt="Sbi" height="35" width="35" class="me-4"/></a>
+                        <a role="button" href=""><img src="Assets/Images/kotak.png" alt="Kotak mahindra" height="35" width="35" class="me-4"/></a>
+                        <a role="button" href=""><img src="Assets/Images/Axis-bank.png" alt="Axis Pay" height="35" width="35" class="me-4"/></a>
+                        <a role="button" href=""><img src="Assets/Images/icici.png" alt="icici Pay" height="35" width="35" class="me-4"/></a>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        <img src="Assets/Images/card.jpg" alt="Card" height="35" width="35" class="me-4"/>Card
+                    </button>
+                </h2>
+                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <input type="number" placeholder="Enter card number" pattern="\d{16}" required class="m-2"><br>
+                        <input type="month" placeholder="Valid till MM/YY" required class="m-2">
+                        <input type="number" placeholder="CVV" pattern="\d{3}" required class="m-2">
+                        <button class="btn btn-primary m-2 float-end" type="submit">Make Payment</button>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                        <img src="Assets/Images/wallet.png" alt="Wallet" height="35" width="35" class="me-4"/>Wallet
+                    </button>
+                </h2>
+                <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <img src="Assets/Images/apple.png" alt="Apple Wallet" height="35" width="35" class="me-4"/>
+                        <a role="button" href=""><img src="Assets/Images/logo.png" alt="Mobicomm Wallet" height="35" width="35" class="me-4"/></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <script>
+        // Function to get query parameters from the URL
+        function getQueryParams() {
+            const params = {};
+            window.location.search.substring(1).split('&').forEach(param => {
+                const [key, value] = param.split('=');
+                params[decodeURIComponent(key)] = decodeURIComponent(value);
+            });
+            return params;
+        }
+
+        // Function to calculate total amount (if applicable)
+        function calculateTotalAmount(price) {
+            // Assuming a flat tax rate of 10% for demonstration
+            const taxRate = 0.10;
+            const taxAmount = parseFloat(price) * taxRate;
+            const totalAmount = parseFloat(price) + taxAmount;
+            return totalAmount.toFixed(2); // Round to 2 decimal places
+        }
+
+        // Display the payment summary
+        function displayPaymentSummary() {
+            const params = getQueryParams();
+            const paymentSummary = document.getElementById('payment-summary');
+
+            if (params.price && params.validity) {
+                const totalAmount = calculateTotalAmount(params.price);
+
+                paymentSummary.innerHTML = `
+                    <p><strong>Plan Price:</strong> ${params.price}</p>
+                    <p><strong>Validity:</strong> ${params.validity}</p>
+                    <p class="total-amount"><strong>Total Amount:</strong> ${params.price}</p>
+                `;
+            } else {
+                paymentSummary.innerHTML = `<p>No plan details found.</p>`;
+            }
+        }
+
+        // Call the function to display the payment summary when the page loads
+        document.addEventListener('DOMContentLoaded', displayPaymentSummary);
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

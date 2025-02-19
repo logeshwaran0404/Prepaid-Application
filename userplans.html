@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap" rel="stylesheet">
+    <title>Mobicomm</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <header>
+        <div>
+            <nav class="navbar navbar-light fixed-top w-100">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="Assets/Images/logo.png" alt="logo" width="38" height="34" class="d-inline-block align-text-center">
+                        <h1 class="h1 as h3 d-inline-block text-light align-text-center fw-bold">MOBICOMM</h1>
+                    </a>
+                    <div class="me-3">
+                        <div class="dropdown">
+                            <a class="navbar-brand" href="#" role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="Assets/Images/profile-icon.png" class="float-end me-3" alt="Profile" width="35" height="35">
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#profileModal">Profile</a></li>
+                                    <li><a class="dropdown-item" href="#">Help</a></li>
+                                    <li><a class="dropdown-item" href="index.html">Log Out</a></li>
+                            </ul>
+                        </div>
+                    </div>    
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Profile Modal -->
+    <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="profileModalLabel">Profile Settings</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="text-center mb-3">
+                            <img id="profileImage" src="Assets/Images/profile-icon.png" alt="Profile" width="100" height="100" class="rounded-circle border">
+                            <input type="file" id="uploadImage" class="form-control mt-2" accept="image/*" onchange="previewImage(event)">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Display Name:</label>
+                            <input type="text" class="form-control" value="Logeshwaran" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email ID:</label>
+                            <input type="email" class="form-control" id="emailInput" value="Logeshwaran@gmail.com">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Phone Number:</label>
+                            <input type="text" class="form-control" value="9003688591" disabled>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="saveProfile()">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Toast -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 5">
+        <div id="profileToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">Profile updated successfully!</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid p-0 m-0">
+        <div class="row">
+            <nav class="col-md-3 bg-dark text-light vh-100 position-fixed d-flex flex-column align-items-center pt-4">
+                <section class="d-flex ms-1 mt-5 me-5">
+                    <input type="tel" placeholder="phoneNumber" class="container rounded bg-light text-dark ms-4 me-4 mb-5 mt-3">
+                    <button type="button" onclick="window.location.href='index.html'" class="btn btn-outline-light btn-sm mb-5 mt-3">Change</button>
+                </section>
+                <div>
+                    <form class="d-flex ms-1" id="searchForm">
+                        <input class="form-control me-3" type="search" placeholder="Search plans" aria-label="Search" id="searchInput">
+                        <button class="btn btn-sm btn-outline-light" type="submit">Search</button>
+                    </form>
+                    <div class="mt-3">
+                        <select id="dataFilter" class="form-select mb-2">
+                            <option value="">Select Data</option>
+                            <option value="1GB">1GB</option>
+                            <option value="2GB">2GB</option>
+                            <option value="5GB">5GB</option>
+                            <option value="10GB">10GB</option>
+                            <option value="Unlimited">Unlimited</option>
+                        </select>
+                        <select id="validityFilter" class="form-select mb-2">
+                            <option value="">Select Validity</option>
+                            <option value="7">7 Days</option>
+                            <option value="30">30 Days</option>
+                            <option value="90">90 Days</option>
+                            <option value="180">180 Days</option>
+                        </select>
+                        <button class="btn btn-sm btn-outline-light" id="filterButton">Filter</button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="main-content mt-3">
+        <div class="container mt-5">
+            <h2 class="h2 mb-4">Recharge Plans</h2>
+            <div class="scrolling-navbar d-flex flex-nowrap">
+                <ul class="nav nav-tabs flex-row">
+                    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#popular">Popular Plans</a></li>
+                    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#validity">Validity Plan</a></li>
+                    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#data">Data Plan</a></li>
+                    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#unlimited">Unlimited Plan</a></li>
+                    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#talktime">Talk Time</a></li>
+                    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#roaming">International Roaming</a></li>
+                    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#special">Special Offers</a></li>
+                </ul>
+            </div>
+
+            <div class="tab-content mt-3 w-100">
+                <div id="popular" class="tab-pane fade show active">
+                    <div class="container mt-0 mb-4" id="plans-container"></div>
+                </div>
+                <div id="validity" class="tab-pane fade">
+                    <div class="container mt-0 mb-4" id="validityPlans-container"></div>
+                </div>
+                <div id="data" class="tab-pane fade">
+                    <div class="container mt-0 mb-4" id="dataPlans-container"></div>
+                </div>
+                <div id="unlimited" class="tab-pane fade">
+                    <div class="container mt-0 mb-4" id="unlimitedPlans-container"></div>
+                </div>
+                <div id="talktime" class="tab-pane fade">
+                    <div class="container mt-0 mb-4" id="talkTimePlans-container"></div>
+                </div>
+                <div id="roaming" class="tab-pane fade">
+                    <div class="container mt-0 mb-4" id="roamingPlans-container"></div>
+                </div>
+                <div id="special" class="tab-pane fade">
+                    <div class="container mt-0 mb-4" id="specialOffers-container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = () => document.getElementById('profileImage').src = reader.result;
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        function saveProfile() {
+            const email = document.getElementById('emailInput').value;
+            bootstrap.Modal.getInstance(document.getElementById('profileModal')).hide();
+            new bootstrap.Toast(document.getElementById('profileToast')).show();
+        }
+
+        async function fetchPlans(url, containerId) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error("Network response was not ok");
+                const plans = await response.json();
+                const container = document.getElementById(containerId);
+                container.innerHTML = plans.map(plan => `
+                    <div class="card ms-3 me-3 p-0 w-100" style="width: 18rem;">
+                        <div class="card-body">
+                            <p class="card-text"><span class="ms-5">Price: ${plan.price}</span> <span class="ms-5">Validity: ${plan.validity}</span> <span class="ms-5">Data: ${plan.data} <span class="ms-5">Data: ${plan.desc}</span></p>
+                            <button type="button" class="btn btn-primary text-light float-end" onclick="window.location.href='Payment.html?price=${encodeURIComponent(plan.price)}&validity=${encodeURIComponent(plan.validity)}'">Get Plan</button>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            fetchPlans("http://localhost:3000/popularPlan", "plans-container");
+            fetchPlans("http://localhost:3000/validityPlans", "validityPlans-container");
+            fetchPlans("http://localhost:3000/dataPlans", "dataPlans-container");
+            fetchPlans("http://localhost:3000/unlimitedPlans", "unlimitedPlans-container");
+            fetchPlans("http://localhost:3000/talkTimePlans", "talkTimePlans-container");
+            fetchPlans("http://localhost:3000/roamingPlans", "roamingPlans-container");
+            fetchPlans("http://localhost:3000/specialOffers", "specialOffers-container");
+        });
+
+        document.getElementById("searchForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+            filterPlans(searchTerm);
+        });
+
+        document.getElementById("filterButton").addEventListener("click", function() {
+            const dataFilter = document.getElementById("dataFilter").value;
+            const validityFilter = document.getElementById("validityFilter").value;
+            filterPlans(null, dataFilter, validityFilter);
+        });
+
+        function filterPlans(searchTerm = '', dataFilter = '', validityFilter = '') {
+            const planContainers = [
+                { id: "plans-container", url: "http://localhost:3000/popularPlan" },
+                { id: "validityPlans-container", url: "http://localhost:3000/validityPlans" },
+                { id: "dataPlans-container", url: "http://localhost:3000/dataPlans" },
+                { id: "unlimitedPlans-container", url: "http://localhost:3000/unlimitedPlans" },
+                { id: "talkTimePlans-container", url: "http://localhost:3000/talkTimePlans" },
+                { id: "roamingPlans-container", url: "http://localhost:3000/roamingPlans" },
+                { id: "specialOffers-container", url: "http://localhost:3000/specialOffers" }
+            ];
+
+            planContainers.forEach(container => {
+                fetch(container.url)
+                    .then(response => response.json())
+                    .then(plans => {
+                        const filteredPlans = plans.filter(plan => {
+                            const isDataValid = dataFilter === '' || plan.data === dataFilter;
+                            const isValidityValid = validityFilter === '' || plan.validity == validityFilter;
+                            const isSearchValid = searchTerm === '' || 
+                                                  plan.price.toString().includes(searchTerm ) || 
+                                                  plan.validity.toString().includes(searchTerm) || 
+                                                  plan.data.toString().includes(searchTerm);
+                            return isDataValid && isValidityValid && isSearchValid;
+                        });
+
+                        const planContainer = document.getElementById(container.id);
+                        planContainer.innerHTML = filteredPlans.length ? filteredPlans.map(plan => `
+                            <div class="card ms-3 me-3 p-0 w-100" style="width: 18rem;">
+                                <div class="card-body">
+                                    <p class="card-text"><span class="ms-5">${plan.price}</span> <span class="ms-5">${plan.validity}</span> <span class="ms-5">${plan.data}</span></p>
+                                    <button type="button" class="btn btn-primary text-light float-end" onclick="window.location.href='Payment.html'">Get Plan</button>
+                                </div>
+                            </div>
+                        `).join('') : "<p class='text-center'>No plans found.</p>";
+                    })
+                    .catch(error => console.error("Error fetching data:", error));
+            });
+        }
+    </script>
+</body>
+</html>

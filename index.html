@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Mobicomm</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+
+</head>
+<body>
+    <header>
+        <div>
+            <nav class="navbar navbar-light fixed-top w-100 mb-5">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="Assets/Images/logo.png" alt="logo" width="38" height="34" class="d-inline-block align-text-center">
+                        <h1 class="h1 as h3 d-inline-block align-text-center text-light fw-bold">MOBICOMM</h1>
+                    </a>
+                    <div class="me-3">
+                        <div class="dropdown">
+                            <a class="navbar-brand" href="#" role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="Assets/Images/profile-icon.png" class="float-end me-3" alt="Profile" width="35" height="35">
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                                <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
+                                <li><a class="dropdown-item" href="#">Help</a></li>
+                            </ul>
+                        </div>
+                    </div>    
+                </div>
+            </nav>
+        </div>
+    </header>
+
+
+<!-- Login -->
+
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Login with OTP</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Phone Number Input -->
+                    <div class="mb-3">
+                        <label for="phoneNumber" class="form-label">Enter Mobile Number</label>
+                        <input type="tel" class="form-control" id="phoneNumber" placeholder="Enter 10-digit mobile number" pattern="\d{10}" required>
+                        <div class="text-danger mt-1 d-none" id="phoneError">Enter a valid 10-digit number!</div>
+                    </div>
+    
+                    <!-- OTP Input (Hidden Initially) -->
+                    <div class="mb-3 d-none" id="otpSection">
+                        <label for="otp" class="form-label">Enter OTP</label>
+                        <input type="text" class="form-control" id="otp" placeholder="Enter OTP">
+                    </div>
+    
+                    <!-- Buttons -->
+                    <button class="btn btn-primary w-100" id="getOtpBtn" onclick="getOTP()">Get OTP</button>
+                    <button class="btn btn-success w-100 mt-2 d-none" id="loginBtn" onclick="login()">Login</button>
+                    <!-- Toast Container -->
+                    <div id="toastContainer" class="position-fixed top-0 end-0 p-3" style="z-index: 1050;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recharge Section -->
+<!-- Recharge Section -->
+<br>
+<br><br>
+<div class="container-fluid">
+    <div class="row justify-content-center align-items-center index-main-content">
+        <!-- Recharge Card -->
+        <div class="col-md-6 col-lg-5 mt-5">
+            <div class="card recharge-card shadow-lg" style="border-radius: 15px; border: none;">
+                <div class="card-body p-4">
+                    <div class="text-center mb-4">
+                        <img src="Assets\Images\logo.png" alt="Mobicomm Logo" class="img-fluid mb-3" style="width: 80px;">
+                        <h1 class="h3 mb-3" style="color: #2c3e50;">Prepaid Recharge</h1>
+                        <p class="text-muted">Quickly recharge your mobile number and stay connected.</p>
+                    </div>
+                    <form>
+                        <div class="mb-3">
+                            <label for="mobileNumber" class="form-label">Enter your 10-digit mobile number</label>
+                            <input type="tel" id="mobileNumber" class="form-control form-control-lg"
+                                   placeholder="e.g., 9876543210" required
+                                   maxlength="10" oninput="validateNumberInput(this)">
+                        </div>
+                        <div class="d-grid">
+                            <button type="button" id="proceedButton" class="btn btn-lg"
+                                    onclick="validateAndProceed()" disabled>
+                                <i class="fas fa-arrow-right me-2"></i>Proceed
+                            </button>
+                        </div>
+                        <small id="error-message" class="text-danger d-block text-center mt-2"></small>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Image Section -->
+        <div class="col-md-6 col-lg-5 mt-5 d-none d-md-block">
+            <div class="text-center">
+                <img src="Assets\Images\MobilePerepaid.svg" alt="Recharge Illustration" class="img-fluid" style="max-width: 100%; height: auto; border-radius: 15px;">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<br><br>
+    <div class="inedx-main-content">
+        <div class="position-relative">
+            <footer class="footer mt-2">
+                <div class="container">
+                    <div class="row text-dark">
+                        <div class="col-md-3">
+                            <h2 class="text-dark fw-bold">Mobicomm</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <!-- <p>About us</p> -->
+                            <p>Contact us <br>support@mobicomm.in</p>
+                        </div>
+                        <div class="col-md-3">
+                            <p>Privacy Policy</p>
+                            <p>Terms & Conditions</p>
+                        </div>
+                        <div class="col-md-3">
+                            <!-- <a type="button" href=""></a> -->
+                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Consumer Complaint</button>
+    
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                        <div class="mb-3">
+                                            <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                            <input type="text" class="form-control" id="recipient-name">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="message-text" class="col-form-label">Message:</label>
+                                            <textarea class="form-control" id="message-text"></textarea>
+                                        </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Send message</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        
+            <div class="footer-bottom m-0">
+                &copy copy rights reserved to mobicomm
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+         function showToast(message, type = "success") {
+    let toastContainer = document.getElementById("toastContainer");
+    let toast = document.createElement("div");
+
+    toast.className = `toast align-items-center text-white bg-${type} border-0 show`;
+    toast.role = "alert";
+    toast.innerHTML = `
+        <div class="d-flex">
+            <div class="toast-body">${message}</div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    `;
+
+    toastContainer.appendChild(toast);
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => toast.remove(), 500); // Remove from DOM after fading out
+    }, 3000);
+}
+
+function getOTP() {
+    let phoneInput = document.getElementById("phoneNumber").value.trim();
+    let phoneError = document.getElementById("phoneError");
+    let otpSection = document.getElementById("otpSection");
+    let loginBtn = document.getElementById("loginBtn");
+
+    if (!/^\d{10}$/.test(phoneInput)) {
+        phoneError.classList.remove("d-none");
+        return;
+    } else {
+        phoneError.classList.add("d-none");
+    }
+
+    // Simulating OTP sending
+    setTimeout(() => {
+        showToast("OTP Sent to " + phoneInput, "success");
+        otpSection.classList.remove("d-none");
+        loginBtn.classList.remove("d-none");
+    }, 500);
+}
+
+function login() {
+    let otpInput = document.getElementById("otp").value.trim();
+    let loginModal = document.getElementById("loginModal");
+
+    if (otpInput === "123456") {
+        showToast("Login Successful!", "success");
+
+        setTimeout(() => {
+            let modalBackdrop = document.querySelector(".modal-backdrop");
+            if (modalBackdrop) modalBackdrop.remove();
+            loginModal.classList.remove("show");
+            loginModal.style.display = "none";
+            document.body.classList.remove("modal-open");
+            window.location.href = "userplans.html";  // Change this to your actual page URL
+        }, 1500);  
+        
+    } else {
+        showToast("Invalid OTP! Try again.", "danger");
+    }
+}
+
+
+        function scrollLeft() { 
+            document.querySelector(".scroll-container").scrollBy({
+                left: -300, behavior: "smooth"
+            });
+        }
+
+        function scrollRight() {
+            document.querySelector(".scroll-container").scrollBy({
+                left: 300, behavior: "smooth"
+            });
+        }
+        function openModal() {
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        function validateNumberInput(input) {
+        input.value = input.value.replace(/\D/g, ''); // Remove non-numeric characters
+        let errorMessage = document.getElementById("error-message");
+        let proceedButton = document.getElementById("proceedButton");
+
+        if (input.value.length === 10) {
+            errorMessage.textContent = ""; // Clear error
+            proceedButton.disabled = false; // Enable button
+        } else {
+            errorMessage.textContent = "Please enter a valid 10-digit mobile number.";
+            proceedButton.disabled = true; // Disable button
+        }
+    }
+
+    function validateAndProceed() {
+        let mobileInput = document.getElementById("mobileNumber").value;
+
+        if (mobileInput.length === 10) {
+            window.location.href = 'plans.html'; // Redirect to payment page
+        }
+    }
+        // Function to close modal
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            let modal = document.getElementById("myModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        
+    </script>
+
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

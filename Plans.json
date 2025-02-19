@@ -1,0 +1,93 @@
+{
+    "popularPlan": [
+        {
+            "id": 1, "price": "₹ 249", "validity": "28 days", "data": "1 GB/day", "desc":"Unlimited 5G data + 11 OTTs"
+        },
+        {
+            "id": 2, "price": "₹ 399", "validity": "56 days", "data": "1.5 GB/day", "desc":"Unlimited 5G data + Prime"
+        },
+        {
+            "id": 3, "price": "₹ 599", "validity": "84 days", "data": "2 GB/day", "desc":"Unlimited 5G data + OTTs"
+        },
+        {
+            "id": 4, "price": "₹ 719", "validity": "90 days", "data": "2.5 GB/day", "desc":"Unlimited 5G data + Netflix"
+        },
+        {
+            "id": 5, "price": "₹ 999", "validity": "365 days", "data": "3 GB/day", "desc":"Unlimited 5G data + OTT's"
+        }
+    ],
+    "unlimitedPlans": [
+        {
+            "id": 1, "price": "₹ 299", "validity": "28 days", "data": "Unlimited Data", "desc":"Free Prime, Spotify"
+        },
+        {
+            "id": 2, "price": "₹ 499", "validity": "56 days", "data": "Unlimited Data", "desc":"Free Prime, Spotify"
+        },
+        {
+            "id": 3, "price": "₹ 699", "validity": "84 days", "data": "Unlimited Data", "desc":"Free Prime, Spotify"
+        },
+        {
+            "id": 4, "price": "₹ 799", "validity": "90 days", "data": "Unlimited Data + 100 SMS/day", "desc":"Free Prime, Spotify"
+        },
+        {
+            "id": 5, "price": "₹ 1499", "validity": "365 days", "data": "Unlimited Data + 200 SMS/day","desc":"Free Prime, Spotify"
+        }
+    ],
+    "validityPlans": [
+        {
+            "id": 1, "price": "₹ 107", "validity": "30 days", "data": "No Data (Talktime only)"
+        },
+        {
+            "id": 2, "price": "₹ 209", "validity": "90 days", "data": "No Data (Talktime only)"
+        }
+    ],
+    "dataPlans": [
+        {
+            "id": 1, "price": "₹ 19", "validity": "1 day", "data": "1 GB"
+        },
+        {
+            "id": 2, "price": "₹ 49", "validity": "7 days", "data": "3 GB"
+        },
+        {
+            "id": 3, "price": "₹ 98", "validity": "28 days", "data": "6 GB"
+        }
+    ],
+    "talkTimePlans": [
+        {
+            "id": 1, "price": "₹ 10", "validity": "Unlimited", "data": "Talktime ₹ 7.47"
+        },
+        {
+            "id": 2, "price": "₹ 100", "validity": "Unlimited", "data": "Talktime ₹ 81.75"
+        }
+    ],
+    "roamingPlans": [
+        {
+            "id": 1, "price": "₹ 501", "validity": "30 days", "data": "International Roaming 5 GB"
+        },
+        {
+            "id": 2, "price": "₹ 1199", "validity": "90 days", "data": "International Roaming 10 GB"
+        }
+    ],
+    "specialOffers": [
+        {
+            "id": 1, "price": "₹ 349", "validity": "28 days", "data": "2 GB/day + Free OTT Subscription"
+        },
+        {
+            "id": 2, "price": "₹ 799", "validity": "84 days", "data": "2.5 GB/day + Free OTT Subscription"
+        }
+    ],
+    "SuperSaver": [
+        {
+            "id": 1, "price": "₹ 19", "validity": "1 day", "data": "1 GB"
+        },
+        {
+            "id": 2, "price": "₹ 49", "validity": "7 days", "data": "3 GB"
+        },
+        {
+            "id": 3, "price": "₹ 98", "validity": "28 days", "data": "6 GB"
+        },
+        {
+            "id": 4, "price": "₹ 108", "validity": "28 days", "data": "6 GB"
+        }
+    ]
+}
